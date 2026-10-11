@@ -191,59 +191,88 @@ export default function App() {
         </div>
       )}
 
-      {/* MINIMAL STICKY NAV AT VERY TOP */}
-      <header
+      {/* MINIMAL STICKY NAV + RUNNING MARQUEE PINNED AT VERY TOP */}
+      <div
         style={{
           position: 'fixed',
           top: 0,
           left: 0,
           right: 0,
           zIndex: 100,
-          backgroundColor: isScrolled ? '#000000' : 'transparent',
-          borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid transparent',
-          transition: 'background-color 0.3s ease, border-color 0.3s ease',
-          padding: '18px 24px',
+          backgroundColor: isScrolled ? '#000000' : 'rgba(0, 0, 0, 0.92)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
+          transition: 'background-color 0.3s ease',
         }}
       >
-        <div
+        <header
           style={{
-            maxWidth: '1280px',
-            margin: '0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            padding: '14px 24px',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
           }}
         >
-          {/* Left: "BONKERS & CO" text only (no EST. no tagline) */}
-          <a
-            href="#hero"
+          <div
             style={{
-              textDecoration: 'none',
-              color: '#ffffff',
-              fontSize: '13px',
-              fontWeight: '600',
-              letterSpacing: '0.22em',
-              textTransform: 'uppercase',
-              fontFamily: 'var(--font-serif)',
+              maxWidth: '1280px',
+              margin: '0 auto',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
             }}
           >
-            BONKERS &amp; CO
-          </a>
+            {/* Left: "BONKERS & CO" text only (no EST. no tagline) */}
+            <a
+              href="#hero"
+              style={{
+                textDecoration: 'none',
+                color: '#ffffff',
+                fontSize: '13px',
+                fontWeight: '600',
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
+                fontFamily: 'var(--font-serif)',
+              }}
+            >
+              BONKERS &amp; CO
+            </a>
 
-          {/* Nothing in the center of the nav */}
+            {/* Right: one button "ЗАПИСЬ" */}
+            <a
+              href="#booking"
+              className="cta-button cta-button-sm"
+              style={{ padding: '8px 20px', fontSize: '11px', letterSpacing: '0.2em' }}
+            >
+              ЗАПИСЬ
+            </a>
+          </div>
+        </header>
 
-          {/* Right: one button "ЗАПИСЬ" */}
-          <a
-            href="#booking"
-            className="cta-button cta-button-sm"
-            style={{ padding: '9px 22px', fontSize: '11px', letterSpacing: '0.2em' }}
-          >
-            ЗАПИСЬ
-          </a>
+        {/* БЕГУЩАЯ ЛЕНТА ПРИКРЕПЛЕНА НА САМЫЙ ВЕРХ ПОД NAV БЛОК */}
+        <div
+          className="marquee-container"
+          style={{
+            borderTop: 'none',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.25)',
+            backgroundColor: '#000000',
+            height: '32px',
+          }}
+        >
+          <div className="marquee-content">
+            {[...marqueeText1, ...marqueeText1].map((text, idx) => (
+              <div
+                key={idx}
+                className="marquee-item"
+                style={{ fontSize: '10px', letterSpacing: '0.22em', padding: '0 20px' }}
+              >
+                <span>{text}</span>
+                <span style={{ opacity: 0.35 }}>✦</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </header>
+      </div>
 
-      {/* 1. HERO С КРУТЯЩЕЙСЯ БЕГУЩЕЙ ЛЕНТОЙ ВНИЗУ ЭКРАНА */}
+      {/* 1. HERO (Only 3 elements centered, transparent to show background canvas animation) */}
       <section
         id="hero"
         style={{
@@ -253,17 +282,15 @@ export default function App() {
           minHeight: '100dvh',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
           alignItems: 'center',
           textAlign: 'center',
-          backgroundColor: '#000000',
+          backgroundColor: 'transparent',
           borderBottom: '1px solid #ffffff',
           boxSizing: 'border-box',
+          paddingTop: '78px',
         }}
       >
-        {/* Top spacer to balance the centered content */}
-        <div style={{ height: '60px' }} />
-
         {/* Center: floating 3 elements */}
         <div
           style={{
@@ -327,18 +354,6 @@ export default function App() {
             </a>
           </div>
         </div>
-
-        {/* Крутящаяся бегущая лента прямо в Hero */}
-        <div className="marquee-container" style={{ width: '100%', borderBottom: 'none' }}>
-          <div className="marquee-content">
-            {[...marqueeText1, ...marqueeText1].map((text, idx) => (
-              <div key={idx} className="marquee-item">
-                <span>{text}</span>
-                <span style={{ opacity: 0.35 }}>✦</span>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* 2. PROMO SECTION (Full-width, high impact −15%) */}
@@ -350,7 +365,7 @@ export default function App() {
           borderBottom: '1px solid #ffffff',
           padding: 'clamp(70px, 12vh, 130px) 24px',
           textAlign: 'center',
-          backgroundColor: '#000000',
+          backgroundColor: 'transparent',
         }}
       >
         <div style={{ maxWidth: '940px', margin: '0 auto', position: 'relative' }}>
@@ -448,7 +463,7 @@ export default function App() {
           zIndex: 10,
           borderBottom: '1px solid #ffffff',
           padding: 'clamp(70px, 12vh, 120px) 24px',
-          backgroundColor: '#000000',
+          backgroundColor: 'transparent',
         }}
       >
         <div style={{ maxWidth: '1060px', margin: '0 auto' }}>
@@ -528,7 +543,7 @@ export default function App() {
           zIndex: 10,
           borderBottom: '1px solid #ffffff',
           padding: 'clamp(70px, 12vh, 120px) 24px',
-          backgroundColor: '#000000',
+          backgroundColor: 'transparent',
         }}
       >
         <div style={{ maxWidth: '920px', margin: '0 auto' }}>
@@ -659,7 +674,7 @@ export default function App() {
           zIndex: 10,
           borderBottom: '1px solid #ffffff',
           padding: 'clamp(70px, 12vh, 120px) 24px',
-          backgroundColor: '#000000',
+          backgroundColor: 'transparent',
         }}
       >
         <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
@@ -835,7 +850,7 @@ export default function App() {
           zIndex: 10,
           borderBottom: '1px solid #ffffff',
           padding: 'clamp(70px, 12vh, 120px) 24px',
-          backgroundColor: '#000000',
+          backgroundColor: 'transparent',
         }}
       >
         <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
@@ -941,7 +956,7 @@ export default function App() {
           zIndex: 10,
           padding: 'clamp(60px, 10vh, 100px) 24px 60px 24px',
           textAlign: 'center',
-          backgroundColor: '#000000',
+          backgroundColor: 'transparent',
         }}
       >
         <div style={{ maxWidth: '860px', margin: '0 auto' }}>

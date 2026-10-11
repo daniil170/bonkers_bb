@@ -161,7 +161,9 @@ export default function BookingWidget() {
       style={{
         maxWidth: '1040px',
         margin: '0 auto',
-        backgroundColor: '#000000',
+        backgroundColor: 'rgba(0, 0, 0, 0.75)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
         border: '1px solid rgba(255, 255, 255, 0.4)',
         padding: 'clamp(24px, 5vw, 48px)',
         position: 'relative',
