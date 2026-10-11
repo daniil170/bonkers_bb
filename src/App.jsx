@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BackgroundAnimation from './components/BackgroundAnimation.jsx';
 import BookingWidget from './components/BookingWidget.jsx';
+import bonkersLogo from './assets/bonkers-logo.png';
 
 const BOOKING_URL = 'https://b699297.alteg.io/select-city/36/select-branch';
 
@@ -307,7 +308,7 @@ export default function App() {
           {/* 1. Logo image — large, ~320px wide on desktop */}
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <img
-              src="/assets/bonkers-logo.png"
+              src={bonkersLogo}
               alt="Bonkers & Co barbershop"
               style={{
                 width: 'min(76vw, 320px)',
@@ -963,7 +964,7 @@ export default function App() {
           {/* Logo (small version) centered */}
           <div style={{ marginBottom: '36px' }}>
             <img
-              src="/assets/bonkers-logo.png"
+              src={bonkersLogo}
               alt="Bonkers & Co barbershop"
               style={{
                 maxWidth: '180px',
